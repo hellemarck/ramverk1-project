@@ -7,7 +7,7 @@
          [
              "info" => "Forum.",
              "mount" => "forum",
-             "handler" => "\Mh\Controller\ForumController",
+             "handler" => "\Mh\Forum\ForumController",
          ],
      ]
  ];

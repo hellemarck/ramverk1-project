@@ -7,6 +7,9 @@ use Anax\Commons\ContainerInjectableTrait;
 use Mh\User\HTMLForm\UserLoginForm;
 use Mh\User\HTMLForm\CreateUserForm;
 use Mh\User\HTMLForm\UpdateUserForm;
+use Mh\Forum\Question;
+use Anax\TextFilter\TextFilter;
+
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -155,5 +158,39 @@ class UserController implements ContainerInjectableInterface
         // $this->di->get("request")->getPost("logOut");
         $this->di->get("session")->delete("user");
         $this->di->get("response")->redirect("user/login");
+    }
+
+
+    // view any user page
+    public function profileAction(int $id) : object
+    {
+        $page = $this->di->get("page");
+        $user = new User();
+        $user->setDb($this->di->get("dbqb"));
+        $user->find("userid", $id);
+
+        $question = new Question();
+        $question->setDb($this->di->get("dbqb"));
+        // $quest =
+        // var_dump($question);
+
+        // $user = new Reply();
+        // $user->setDb($this->di->get("dbqb"));
+        // $user->find("userid", $id);
+
+        if ($user->userid == null) {
+            $this->di->get("response")->redirect("/");
+        }
+
+        $data = [
+            "user" => $user,
+            "questions" => $question->findAllWhere("question.userid = ?", $id),
+            "filter" => New TextFilter()
+        ];
+
+        $page->add("user/profile", $data);
+        return $page->render([
+            "title" => "Användarprofil"
+        ]);
     }
 }

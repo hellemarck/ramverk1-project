@@ -3,10 +3,11 @@ IN THE MAKING...
 
 ### Get started
 
-git clone ...
+git clone blabla
 
 composer install
 make install
 make install test
 
-evt chmod 777 cache/*
+(evt chmod 777 cache/*
+skapa databasen)

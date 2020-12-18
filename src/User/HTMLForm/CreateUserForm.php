@@ -4,6 +4,7 @@ namespace Mh\User\HTMLForm;
 
 use Anax\HTMLForm\FormModel;
 use Psr\Container\ContainerInterface;
+use Anax\TextFilter\TextFilter;
 use Mh\User\User;
 
 /**
@@ -23,6 +24,7 @@ class CreateUserForm extends FormModel
             [
                 "id" => __CLASS__,
                 "legend" => "Skapa användare",
+                "escape-values" => false
             ],
             [
                 "username" => [
