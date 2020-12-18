@@ -1,5 +1,10 @@
 <?php
-// var_dump($tags);
+
+namespace Anax\View;
+
+// var_dump($replies);
+$urlToUser = url("user/profile");
+
 ?>
 
 <article class="article" style="text-align:center; min-height:300px;">
@@ -15,29 +20,22 @@
 
 <?php
 foreach ($qComments as $com) :
-    ?><div style="background-color:#f7edf7;"<p><?= $com->userid ?> sa (<?= $com->date ?>): <?= $com->text ?></p></div>
+    ?><div style="background-color:#f7edf7;"<p>
+        <a href="<?= $urlToUser . "/" . $com->userid ?>"><?= $com->username ?></a>
+        sa (<?= $com->date ?>): <?= $com->text ?></p></div>
 <?php endforeach; ?>
 
-<br><br>
+<?= $commentFormQuest ?>
 <?= $replyForm ?>
-<?= $commentForm ?>
+
+<br><br>
+<?php
+foreach ($replies as $reply) :
+    ?><div style="background-color:#d0dff7;"<p>
+        <a href="<?= $urlToUser . "/" . $reply->userid ?>"><?= $reply->username ?></a>
+        sa (<?= $reply->date ?>):<br> <?= $reply->text ?></p>
+        <a href="<?= url("forum/comment/{$reply->replyid}"); ?>" class="button right">Kommentera</a></div>
+<?php endforeach; ?>
 
 
-<p>visa taggar, svar och kommentarer
-SKA KUNNA SVARA PÅ FRÅGAN
-SKA KUNNA KOMMENTERA PÅ SVAR OCH FRÅGA</p>
-
-
-<!-- <form action="reply" method="post">
-<br>
-<input id="replyField" name="reply"><br>
-<input type="submit" value="Svara">
-</form>
-
-
-<form action="comment" method="post">
-<br>
-<input id="commentField" name="comment"><br>
-<input type="submit" value="Kommentera">
-</form> -->
 </article>

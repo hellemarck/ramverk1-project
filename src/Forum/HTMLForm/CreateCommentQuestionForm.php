@@ -7,14 +7,16 @@ use Psr\Container\ContainerInterface;
 use Anax\TextFilter\TextFilter;
 use Mh\Forum\Question;
 use Mh\Forum\Reply;
+use Mh\Forum\Comment;
 use Mh\Forum\Tag;
 use Mh\Forum\Tag2Question;
 
 /**
  * Example of FormModel implementation.
  */
-class CreateReplyForm extends FormModel
+class CreateCommentQuestionForm extends FormModel
 {
+    // public $replyid;
     public $questionid;
     /**
      * Constructor injects with DI container.
@@ -25,18 +27,13 @@ class CreateReplyForm extends FormModel
     {
         parent::__construct($di);
         $this->questionid = $id;
+        // $this->replyid = $replyid;
         $this->form->create(
             [
                 "id" => __CLASS__,
-                // "legend" => "Skapa användare",
                 "escape-values" => false
             ],
             [
-                "id" => [
-                    "type" => "hidden",
-                    "validation" => ["not_empty"],
-                    "value" => $id,
-                ],
 
                 "text" => [
                     "label"       => "",
@@ -45,7 +42,7 @@ class CreateReplyForm extends FormModel
 
                 "submit" => [
                     "type" => "submit",
-                    "value" => "Svara på frågan",
+                    "value" => "Kommentera frågan",
                     "callback" => [$this, "callbackSubmit"]
                 ],
             ]
@@ -63,7 +60,7 @@ class CreateReplyForm extends FormModel
     public function callbackSubmit()
     {
         // Get values from the submitted form
-        $questionid    = $this->form->value("id");
+        // $id            = $this->form->value("id");
         $text          = $this->form->value("text");
         $userid        = $_SESSION["user"] ?? null;
 
@@ -71,13 +68,19 @@ class CreateReplyForm extends FormModel
             $this->di->get("response")->redirect("user/login")->send();
         }
 
-        $reply = new Reply();
-        $reply->setDb($this->di->get("dbqb"));
-        $reply->userid = $userid;
-        $reply->questionid = $questionid;
-        $reply->text = $text;
-        $reply->date = date("Y-m-d H:i:s");
-        $reply->save();
+        $comment = new Comment();
+        $comment->setDb($this->di->get("dbqb"));
+        $comment->userid = $userid;
+        $comment->text = $text;
+        $comment->date = date("Y-m-d H:i:s");
+
+        // if ($this->replyid) {
+        //     $comment->replyid = $replyid;
+        // } else {
+        $comment->questionid = $questionid;
+        // }
+
+        $comment->save();
 
         return true;
     }

@@ -9,7 +9,8 @@ use Mh\Forum\HTMLForm\EditForm;
 use Mh\Forum\HTMLForm\DeleteForm;
 use Mh\Forum\HTMLForm\UpdateForm;
 use Mh\Forum\HTMLForm\CreateReplyForm;
-use Mh\Forum\HTMLForm\CreateCommentForm;
+use Mh\Forum\HTMLForm\CreateCommentQuestionForm;
+use Mh\Forum\HTMLForm\CreateCommentReplyForm;
 use Anax\TextFilter\TextFilter;
 
 // use Anax\Route\Exception\ForbiddenException;
@@ -145,37 +146,32 @@ class ForumController implements ContainerInjectableInterface
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
         $res = $question->find("questionid", $id);
-        // $res = $question->joinQuestionComments($id);
 
         $tags = new Tag2Question();
         $tags->setDb($this->di->get("dbqb"));
 
         $qComment = new Comment();
         $qComment->setDb($this->di->get("dbqb"));
-        $qcomments = $qComment->findAllWhere("comment.questionid = ?", $id);
-
+        $qcomments = $qComment->findAllWhereJoin("comment.questionid = ?", $id);
 
         $reply = new Reply();
         $reply->setDb($this->di->get("dbqb"));
-        $replies = $reply->findAllWhere("reply.questionid = ?", $id);
+        $replies = $reply->findAllWhereJoin("reply.questionid = ?", $id);
 
-
-        // set if comment is to answer or reply
-        $replyid = null;
-        // $type = "replyid";
 
         $replyForm = new CreateReplyForm($this->di, $id);
         $replyForm->check();
 
-        $commentForm = new CreateCommentForm($this->di, $id, $replyid);
-        $commentForm->check();
+        $commentFormQuest = new CreateCommentQuestionForm($this->di, $id);
+        $commentFormQuest->check();
 
         $data = [
             "question" => $res,
             "tags" => $tags->joinTags($id),
             "replyForm" => $replyForm->getHTML(),
-            "commentForm" => $commentForm->getHTML(),
-            "qComments" => $qcomments
+            "commentFormQuest" => $commentFormQuest->getHTML(),
+            "qComments" => $qcomments,
+            "replies" => $replies
         ];
 
         $page->add("forum/question", $data);
@@ -184,14 +180,28 @@ class ForumController implements ContainerInjectableInterface
             "title" => "Inlägg"
         ]);
     }
-    //
-    // public function replyPostAction()
-    // {
-    //     var_dump("SVAR");
-    // }
-    //
-    // public function commentPostAction()
-    // {
-    //     var_dump("KOMMENTAR");
-    // }
+
+
+    public function commentAction(int $id) : object
+    {
+        $page = $this->di->get("page");
+        $comment = new Comment();
+        $comment->setDb($this->di->get("dbqb"));
+        $filter = New TextFilter();
+        $reply = new Reply();
+        $reply->setDb($this->di->get("dbqb"));
+
+        $commentFormReply = new CreateCommentReplyForm($this->di, $id);
+        $commentFormReply->check();
+
+        $page->add("forum/comment", [
+            "commentFormReply" => $commentFormReply->getHTML(),
+            "reply" => $reply->findAllWhereJoin("reply.replyid = ?", $id),
+            "filter" => $filter
+        ]);
+
+        return $page->render([
+            "title" => "Kommentera fråga",
+        ]);
+    }
 }

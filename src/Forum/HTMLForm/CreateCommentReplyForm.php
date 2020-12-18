@@ -14,31 +14,26 @@ use Mh\Forum\Tag2Question;
 /**
  * Example of FormModel implementation.
  */
-class CreateCommentForm extends FormModel
+class CreateCommentReplyForm extends FormModel
 {
     public $replyid;
-    public $questionid;
+    // public $questionid;
     /**
      * Constructor injects with DI container.
      *
      * @param Psr\Container\ContainerInterface $di a service container
      */
-    public function __construct(ContainerInterface $di, $id, $replyid = null)
+    public function __construct(ContainerInterface $di, $id)
     {
         parent::__construct($di);
-        $this->questionid = $id;
-        $this->replyid = $replyid;
+        // $this->questionid = $id;
+        $this->replyid = $id;
         $this->form->create(
             [
                 "id" => __CLASS__,
                 "escape-values" => false
             ],
             [
-                // "id" => [
-                //     "type" => "hidden",
-                //     "validation" => ["not_empty"],
-                //     "value" => $id,
-                // ],
 
                 "text" => [
                     "label"       => "",
@@ -47,7 +42,7 @@ class CreateCommentForm extends FormModel
 
                 "submit" => [
                     "type" => "submit",
-                    "value" => "Kommentera",
+                    "value" => "Kommentera svar",
                     "callback" => [$this, "callbackSubmit"]
                 ],
             ]
@@ -78,13 +73,7 @@ class CreateCommentForm extends FormModel
         $comment->userid = $userid;
         $comment->text = $text;
         $comment->date = date("Y-m-d H:i:s");
-
-        if ($this->replyid) {
-            $comment->replyid = $replyid;
-        } else {
-            $comment->questionid = $questionid;
-        }
-
+        $comment->replyid = $replyid;
         $comment->save();
 
         return true;

@@ -27,4 +27,18 @@ class Reply extends ActiveRecordModel
     public $userid;
     public $date;
     public $text;
+
+    // method to match replies w user
+    public function findAllWhereJoin($where, $value)
+    {
+        $params = is_array($value) ? $value : [$value];
+        $this->checkDb();
+        return $this->db->connect()
+                        ->select()
+                        ->from($this->tableName)
+                        ->join("User", "User.userid = Reply.userid")
+                        ->where($where)
+                        ->execute($params)
+                        ->fetchAllClass(get_class($this));
+    }
 }
