@@ -37,8 +37,11 @@ class Reply extends ActiveRecordModel
                         ->select()
                         ->from($this->tableName)
                         ->join("User", "User.userid = Reply.userid")
+                        // ->leftJoin("Comment", "Comment.replyid = Reply.replyid")
                         ->where($where)
                         ->execute($params)
                         ->fetchAllClass(get_class($this));
     }
+
+    // public function findAllJoinComments
 }

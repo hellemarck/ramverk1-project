@@ -34,6 +34,11 @@ class CreateCommentReplyForm extends FormModel
                 "escape-values" => false
             ],
             [
+                // "id" => [
+                //     "label"       => "Id",
+                //     "value"       => $this->replyid,
+                //     "type"        => "text",
+                // ],
 
                 "text" => [
                     "label"       => "",
@@ -73,7 +78,7 @@ class CreateCommentReplyForm extends FormModel
         $comment->userid = $userid;
         $comment->text = $text;
         $comment->date = date("Y-m-d H:i:s");
-        $comment->replyid = $replyid;
+        $comment->replyid = $this->replyid;
         $comment->save();
 
         return true;
@@ -81,6 +86,8 @@ class CreateCommentReplyForm extends FormModel
 
     public function callbackSuccess()
     {
-        $this->di->get("response")->redirect("forum/question/" . $this->questionid)->send();
+        $questionid = $_SESSION["question"];
+        $this->di->get("session")->delete("question");
+        $this->di->get("response")->redirect("forum/question/" . $questionid)->send();
     }
 }

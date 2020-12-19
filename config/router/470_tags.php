@@ -7,7 +7,7 @@
          [
              "info" => "Tags.",
              "mount" => "tags",
-             "handler" => "\Mh\Controller\TagController",
+             "handler" => "\Mh\Forum\TagController",
          ],
      ]
  ];

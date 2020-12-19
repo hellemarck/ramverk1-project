@@ -1,7 +1,7 @@
 <?php
 
 namespace Anax\View;
-
+// $commentFormQuest["id"] = 0;
 // var_dump($replies);
 $urlToUser = url("user/profile");
 
@@ -34,7 +34,15 @@ foreach ($replies as $reply) :
     ?><div style="background-color:#d0dff7;"<p>
         <a href="<?= $urlToUser . "/" . $reply->userid ?>"><?= $reply->username ?></a>
         sa (<?= $reply->date ?>):<br> <?= $reply->text ?></p>
-        <a href="<?= url("forum/comment/{$reply->replyid}"); ?>" class="button right">Kommentera</a></div>
+        <?php if ($reply->comments) {
+            foreach ($reply->comments as $comment) {
+                ?><div style="background-color:#f7edf7;"><p>
+                    <a href="<?= $urlToUser . "/" . $comment->userid ?>"><?= $comment->username ?></a>
+                    sa (<?= $comment->date ?>): <?= $comment->text ?></p></div><?php
+
+            }
+        }?>
+        <a href="<?= url("forum/comment/{$reply->replyid}"); ?>" class="button">Kommentera detta svar</a><br><br></div>
 <?php endforeach; ?>
 
 

@@ -94,7 +94,7 @@ class CreateForm extends FormModel
             // Save tag if new
             $tag = new Tag();
             $tag->setDb($this->di->get("dbqb"));
-            if ($tag->find("tag", $item == null)) {
+            if ($tag->find("tag", $item) == null) {
                 $tag->tag = $item;
                 $tag->save();
             }

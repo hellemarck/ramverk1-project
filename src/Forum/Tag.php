@@ -24,4 +24,32 @@ class Tag extends ActiveRecordModel
      */
     public $tagid;
     public $tag;
+
+    public function joinTagAndQuestions($value)
+    {
+        $params = is_array($value) ? $value : [$value];
+        $this->checkDb();
+        return $this->db->connect()
+                        ->select()
+                        ->from($this->tableName)
+                        // ->join("Tag2Question", "Tag.tagid = Tag2Question.tagid")
+                        // ->joinLeft("Question", "Tag2Question.questionid = Question.questionid")
+                        ->where("Tag.tagid = ?")
+                        ->execute($params)
+                        ->fetchAllClass(get_class($this));
+    }
+
+    // public function findAllWhereJoin($where, $value)
+    // {
+    //     $params = is_array($value) ? $value : [$value];
+    //     $this->checkDb();
+    //     return $this->db->connect()
+    //                     ->select()
+    //                     ->from($this->tableName)
+    //                     ->join("User", "User.userid = Reply.userid")
+    //                     // ->leftJoin("Comment", "Comment.replyid = Reply.replyid")
+    //                     ->where($where)
+    //                     ->execute($params)
+    //                     ->fetchAllClass(get_class($this));
+    // }
 }

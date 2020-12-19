@@ -143,6 +143,7 @@ class ForumController implements ContainerInjectableInterface
     public function questionAction(int $id) : object
     {
         $page = $this->di->get("page");
+        $this->di->get("session")->set("question", $id);
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
         $res = $question->find("questionid", $id);
@@ -158,6 +159,14 @@ class ForumController implements ContainerInjectableInterface
         $reply->setDb($this->di->get("dbqb"));
         $replies = $reply->findAllWhereJoin("reply.questionid = ?", $id);
 
+        foreach ($replies as $reply) {
+            $rComment = New Comment();
+            $id = $reply->replyid;
+            $rComment->setDb($this->di->get("dbqb"));
+            // var_dump($reply->replyid);
+            $reply->comments = $rComment->findAllWhereJoin("Comment.replyid = ?", $id);
+        }
+        // $replies->comments = "hello";
 
         $replyForm = new CreateReplyForm($this->di, $id);
         $replyForm->check();
@@ -165,11 +174,15 @@ class ForumController implements ContainerInjectableInterface
         $commentFormQuest = new CreateCommentQuestionForm($this->di, $id);
         $commentFormQuest->check();
 
+        // $commentFormReply = new CreateCommentReplyForm($this->di, $id);
+        // $commentFormReply->check();
+
         $data = [
             "question" => $res,
             "tags" => $tags->joinTags($id),
             "replyForm" => $replyForm->getHTML(),
             "commentFormQuest" => $commentFormQuest->getHTML(),
+            // "commentFormReply" => $commentFormReply->getHTML(),
             "qComments" => $qcomments,
             "replies" => $replies
         ];
