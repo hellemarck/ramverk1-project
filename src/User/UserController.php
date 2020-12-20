@@ -8,6 +8,8 @@ use Mh\User\HTMLForm\UserLoginForm;
 use Mh\User\HTMLForm\CreateUserForm;
 use Mh\User\HTMLForm\UpdateUserForm;
 use Mh\Forum\Question;
+use Mh\Forum\Reply;
+use Mh\Forum\Comment;
 use Anax\TextFilter\TextFilter;
 
 
@@ -174,9 +176,18 @@ class UserController implements ContainerInjectableInterface
         // $quest =
         // var_dump($question);
 
-        // $user = new Reply();
-        // $user->setDb($this->di->get("dbqb"));
-        // $user->find("userid", $id);
+        $reply = new Reply();
+        $reply->setDb($this->di->get("dbqb"));
+        // $reply->find("userid", $id);
+
+        $comment = new Comment();
+        $comment->setDb($this->di->get("dbqb"));
+
+        // foreach ($comment as $com) {
+        //     if ($com->questionid == null) {
+        //
+        //     }
+        // }
 
         if ($user->userid == null) {
             $this->di->get("response")->redirect("/");
@@ -185,6 +196,8 @@ class UserController implements ContainerInjectableInterface
         $data = [
             "user" => $user,
             "questions" => $question->findAllWhere("question.userid = ?", $id),
+            "replies" => $reply->findAllWhere("reply.userid = ?", $id),
+            "comments" => $comment->findAllWhere("comment.userid = ?", $id),
             "filter" => New TextFilter()
         ];
 

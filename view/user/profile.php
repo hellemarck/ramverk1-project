@@ -15,7 +15,9 @@ namespace Anax\View;
 // Create urls for navigation
 $urlToView = url("forum");
 
+// var_dump($replies);
 
+var_dump($comments);
 
 ?><h1>Användarprofil</h1>
 
@@ -28,11 +30,22 @@ $urlToView = url("forum");
 
 <?php foreach ($questions as $question) : ?>
 
-<a href="<?= url("forum/{$question->questionid}"); ?>"><li><?= $question->title ?></li></a>
+<a href="<?= url("forum/question/{$question->questionid}"); ?>"><li><?= $question->title ?></li></a>
 <?php endforeach; ?>
 
-<h2>Svar och kommentarer</h2>
-<p>in med det häääär</p>
+<h2>Svar</h2>
+
+<?php foreach ($replies as $reply) : ?>
+
+<a href="<?= url("forum/question/{$reply->questionid}"); ?>"><li><?= $reply->text ?></li></a>
+<?php endforeach; ?>
+
+<h2>Kommentarer</h2>
+
+<?php foreach ($comments as $comment) : ?>
+
+<a href="<?= url("forum/question/{$comment->questionid}"); ?>"><li><?= $comment->text ?></li></a>
+<?php endforeach; ?>
 
 <p>
     <a href="<?= $urlToView ?>">Tillbaka</a>
