@@ -35,12 +35,17 @@ class HomeController implements ContainerInjectableInterface
 
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
+        $mostQActive = $user->findMostActiveUsers("Question", "Question.userid = User.userid");
+        $mostRActive = $user->findMostActiveUsers("Reply", "Reply.userid = User.userid");
+        $mostCActive = $user->findMostActiveUsers("Comment", "Comment.userid = User.userid");
 
 
         $page->add("home/index", [
             "latestQuestions" => $question->joinTwoTables("User", "Question.userid = User.userid", "Question.questionid DESC LIMIT 3"),
             "popularTags" => $tags,
-            // "3users" => $user->findLatest()
+            "mostActiveQuestion" => $mostQActive,
+            "mostActiveReply" => $mostRActive,
+            "mostActiveComment" => $mostCActive
         ]);
         // $page->add("home/index");
         return $page->render([

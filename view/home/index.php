@@ -2,7 +2,7 @@
 
 namespace Anax\View;
 
-// var_dump($latestQuestions);
+// var_dump($mostActiveQuestion);
 
 ?>
 
@@ -27,4 +27,17 @@ namespace Anax\View;
 } ?>
 
     <h3>3 mest aktiva användarna</h3>
+
+<h4>Inlägg</h4>
+<?php foreach ($mostActiveQuestion as $user) {
+    ?> <li><a href="<?= url("user/profile/{$user->userid}"); ?>"><?= $user->username ?></a></li> <?php
+} ?>
+<h4>Svar</h4>
+<?php foreach ($mostActiveReply as $user) {
+    ?> <li><a href="<?= url("user/profile/{$user->userid}"); ?>"><?= $user->username ?></a></li> <?php
+} ?>
+<h4>Kommentarer</h4>
+<?php foreach ($mostActiveComment as $user) {
+    ?> <li><a href="<?= url("user/profile/{$user->userid}"); ?>"><?= $user->username ?></a></li> <?php
+} ?>
 </article>

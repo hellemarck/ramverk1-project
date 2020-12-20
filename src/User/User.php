@@ -62,4 +62,21 @@ class User extends ActiveRecordModel
     {
         return "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "&s=" . 40;
     }
+
+    // find the three most active users for home pages
+    // in question, reply and comment tables
+    public function findMostActiveUsers($join, $where)
+    {
+        $this->checkDb();
+        return $this->db->connect()
+        // , count(Question.userid) as sumQ, count(Reply.userid) as sumR, count(Comment.userid) as sumC
+                        ->select("*, count(user.userid) as sum")
+                        ->from($this->tableName)
+                        ->join($join, $where)
+                        ->groupBy("User.userid")
+                        ->orderBy("sum DESC")
+                        ->limit("3")
+                        ->execute()
+                        ->fetchAllClass(get_class($this));
+    }
 }

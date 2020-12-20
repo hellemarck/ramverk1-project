@@ -13,7 +13,7 @@ CREATE TABLE User (
     "username" TEXT UNIQUE NOT NULL,
     "pw" TEXT NOT NULL,
     "email" TEXT,
-    "activity" INTEGER DEFAULT 0
+    -- "activity" INTEGER DEFAULT 0
 );
 
 --
