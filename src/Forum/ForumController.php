@@ -57,7 +57,7 @@ class ForumController implements ContainerInjectableInterface
         $page = $this->di->get("page");
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
-        $filter = New TextFilter();
+        $filter = new TextFilter();
 
         $page->add("forum/crud/view-all", [
             // "items" => $question->findAll(),
@@ -184,7 +184,8 @@ class ForumController implements ContainerInjectableInterface
             "commentFormQuest" => $commentFormQuest->getHTML(),
             // "commentFormReply" => $commentFormReply->getHTML(),
             "qComments" => $qcomments,
-            "replies" => $replies
+            "replies" => $replies,
+            "filter" => new TextFilter()
         ];
 
         $page->add("forum/question", $data);
@@ -200,7 +201,7 @@ class ForumController implements ContainerInjectableInterface
         $page = $this->di->get("page");
         $comment = new Comment();
         $comment->setDb($this->di->get("dbqb"));
-        $filter = New TextFilter();
+        $filter = new TextFilter();
         $reply = new Reply();
         $reply->setDb($this->di->get("dbqb"));
 
