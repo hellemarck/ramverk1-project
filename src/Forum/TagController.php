@@ -58,9 +58,9 @@ class TagController implements ContainerInjectableInterface
             $res->question = $quest->find("questionid", $res->questionid);
         }
 
-        foreach ($result as $res) {
-            var_dump($res->question->title);
-        };
+        // foreach ($result as $res) {
+        //     var_dump($res->question->title);
+        // };
 
         // foreach ($replies as $reply) {
         //     $rComment = New Comment();

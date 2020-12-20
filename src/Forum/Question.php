@@ -41,29 +41,6 @@ class Question extends ActiveRecordModel
                         ->fetchAllClass(get_class($this));
     }
 
-    // public function joinUserQuestion()
-    // {
-    //     $this->checkDb();
-    //     return $this->db->connect()
-    //                     ->select()
-    //                     ->from($this->tableName)
-    //                     ->join("User", "Question.userid = User.userid")
-    //                     ->execute()
-    //                     ->fetchAllClass(get_class($this));
-    // }
-
-    // public function joinUserAndQuestion($table, $where, $orderby = null)
-    // {
-    //     $this->checkDb();
-    //     return $this->db->connect()
-    //                     ->select()
-    //                     ->from($this->tableName)
-    //                     ->join("User", "Question.userid = User.userid")
-    //                     ->orderBy("Question.questionid DESC")
-    //                     ->execute()
-    //                     ->fetchAllClass(get_class($this));
-    // }
-
     public function joinTagAndQuestion()
     {
         $this->checkDb();

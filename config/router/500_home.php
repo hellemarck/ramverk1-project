@@ -7,7 +7,7 @@
          [
              "info" => "Home.",
              "mount" => "/",
-             "handler" => "\Mh\Controller\HomeController",
+             "handler" => "\Mh\Home\HomeController",
          ],
      ]
  ];
