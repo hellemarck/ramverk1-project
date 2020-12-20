@@ -17,7 +17,7 @@ $urlToView = url("forum");
 
 // var_dump($replies);
 
-var_dump($comments);
+// var_dump($comments);
 
 ?><h1>Användarprofil</h1>
 
@@ -48,5 +48,5 @@ var_dump($comments);
 <?php endforeach; ?>
 
 <p>
-    <a href="<?= $urlToView ?>">Tillbaka</a>
+    <a href="<?= $urlToView ?>">Tillbaks till forum</a>
 </p>

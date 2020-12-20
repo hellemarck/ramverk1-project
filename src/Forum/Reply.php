@@ -43,5 +43,16 @@ class Reply extends ActiveRecordModel
                         ->fetchAllClass(get_class($this));
     }
 
-    // public function findAllJoinComments
+    public function findQuestionIdWhere($where, $value) : object
+    {
+        $this->checkDb();
+        $params = is_array($value) ? $value : [$value];
+        $this->db->connect()
+                 ->select("Reply.Questionid")
+                 ->from($this ->tableName)
+                 ->where($where)
+                 ->execute($params)
+                 ->fetchInto($this);
+        return $this;
+    }
 }

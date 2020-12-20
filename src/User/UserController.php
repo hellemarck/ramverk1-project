@@ -182,12 +182,17 @@ class UserController implements ContainerInjectableInterface
 
         $comment = new Comment();
         $comment->setDb($this->di->get("dbqb"));
+        $comments = $comment->findAllWhere("comment.userid = ?", $id);
 
-        // foreach ($comment as $com) {
-        //     if ($com->questionid == null) {
-        //
-        //     }
-        // }
+        foreach ($comments as $com) {
+            if ($com->questionid == null) {
+                $temp = new Reply();
+                $temp->setDb($this->di->get("dbqb"));
+
+                $tempQId = $temp->findQuestionIdWhere("reply.replyid = ?", $com->replyid);
+                $com->questionid = $tempQId->questionid;
+            }
+        }
 
         if ($user->userid == null) {
             $this->di->get("response")->redirect("/");
@@ -197,7 +202,7 @@ class UserController implements ContainerInjectableInterface
             "user" => $user,
             "questions" => $question->findAllWhere("question.userid = ?", $id),
             "replies" => $reply->findAllWhere("reply.userid = ?", $id),
-            "comments" => $comment->findAllWhere("comment.userid = ?", $id),
+            "comments" => $comments,
             "filter" => New TextFilter()
         ];
 
