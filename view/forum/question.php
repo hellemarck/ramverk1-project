@@ -10,6 +10,8 @@ $urlToUser = url("user/profile");
 <article class="article" style="text-align:center; min-height:300px;">
 
 <div style="background-color:#daf0e0;"><h1><?= $question->title ?></h1>
+<p>Skrivet av <a href="<?= url("user/profile/{$user->userid}"); ?>"><?= $user->username ?></a></p>
+<img src="<?php echo $user->gravatar($user->email) ?>" style="float:right;">
 <p style="color:#ccc;font-style:italic;"><?= $question->date ?></p>
 <p><?= $filter->parse($question->text, ["markdown"])->text ?></p>
 

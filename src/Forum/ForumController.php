@@ -12,6 +12,7 @@ use Mh\Forum\HTMLForm\CreateReplyForm;
 use Mh\Forum\HTMLForm\CreateCommentQuestionForm;
 use Mh\Forum\HTMLForm\CreateCommentReplyForm;
 use Anax\TextFilter\TextFilter;
+use Mh\User\User;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -148,6 +149,9 @@ class ForumController implements ContainerInjectableInterface
         $question->setDb($this->di->get("dbqb"));
         $res = $question->find("questionid", $id);
 
+        $user = new User();
+        $user->setDb($this->di->get("dbqb"));
+
         $tags = new Tag2Question();
         $tags->setDb($this->di->get("dbqb"));
 
@@ -182,6 +186,7 @@ class ForumController implements ContainerInjectableInterface
             "tags" => $tags->joinTags($id),
             "replyForm" => $replyForm->getHTML(),
             "commentFormQuest" => $commentFormQuest->getHTML(),
+            "user" => $user->find("userid", $question->userid),
             // "commentFormReply" => $commentFormReply->getHTML(),
             "qComments" => $qcomments,
             "replies" => $replies,

@@ -41,6 +41,20 @@ class Question extends ActiveRecordModel
                         ->fetchAllClass(get_class($this));
     }
 
+    // public function findJoin($value)
+    // {
+    //     $this->checkDb();
+    //     $params = is_array($value) ? $value : [$value];
+    //     return $this->db->connect()
+    //                     ->select()
+    //                     ->from($this->tableName)
+    //                     ->where("Question.questionid = ?", $params)
+    //                     ->join("User", "User.userid = Question.userid")
+    //                     ->execute()
+    //                     ->fetchAllClass(get_class($this));
+    // }
+    // joinTwoTables("User", "Question.userid = User.userid")
+
     public function joinTagAndQuestion()
     {
         $this->checkDb();
@@ -63,5 +77,11 @@ class Question extends ActiveRecordModel
                         ->join("Comment", "Question.questionid = Comment.questionid")
                         ->execute()
                         ->fetchAllClass(get_class($this));
+    }
+
+    // generate a gravatar based on email
+    public function gravatar($email)
+    {
+        return "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "&s=" . 40;
     }
 }

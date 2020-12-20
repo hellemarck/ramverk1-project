@@ -32,15 +32,16 @@ $urlToCreate = url("forum/create");
 <?php
     return;
 endif;
-?>
 
+?>
 
 <?php foreach ($q2u as $item) : ?>
 <div style="border:1px solid pink;margin:5px;padding:10px;">
 <a href="<?= url("forum/question/{$item->questionid}"); ?>"><h3><?= $item->title ?></h3></a>
 <p style="color:#ccc;">
     <?= $item->date ?> - Inlägg av <a href="<?= url("user/profile/{$item->userid}"); ?>"> <?= $item->username ?></a></p>
-
+<!-- <?= var_dump($item->email) ?> -->
+<img src="<?php echo $item->gravatar($item->email) ?>" style="float:right;">
     <p><?= $filter->parse($item->text, ["markdown"])->text ?></p>
 
 <p>TAGGAR:
