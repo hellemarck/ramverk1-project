@@ -1,11 +1,11 @@
 
-Om
+Om sidan
 =========================
 
-Om projektet .......
+Denna webbplats är skapad som ett examinerande projekt i kursen ramverk1 (Webbaserade ramverk) på BTH höstterminen 2020. Github-repot hittar du [här](https://github.com/hellemarck/ramverk1-project).
 
-Om mig...
+Resultatet är ett diskussionsforum om kaffe, där registrerade och inloggade användare kan skapa inlägg med taggar, svara på inlägg och kommentera inlägg/svar.
 
-Denna kurs heter Webbaserade ramverk 1 (ramverk1), ges vid Blekinge Tekniska Högskola och behandlar programmering i PHP-ramverket Anax. Förutom det behandlar kursen designmönstret MVC (Model, View, Controller), DI, moduler och CI och databasdrivna modeller. Kursen avslutas med ett större projekt.
+Webbplatsen är byggd i PHP-ramverket Anax och använder sig av SQLite som databas, Travis som verktyg för CI och Scrutinizer för bedömning av kodkvalitét.
 
-mer text om projektet
+Jag som skapat denna sida heter Mette Hellemarck, jag bor i Malmö och läser andra året på programmet Webbprogrammering (distans).

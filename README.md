@@ -3,17 +3,21 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hellemarck/ramverk1-project/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/hellemarck/ramverk1-project/?branch=main)
 
 
+# Project in the course Ramverk1, BTH 2020.
+Built in PHP with the framework Anax, and database SQLite.
 
-## Project in the course ramverk1, BTH 2020.
-IN THE MAKING...
+### Download and install
 
-### Get started
+`git clone https://github.com/hellemarck/ramverk1-project.git`
+`composer install`
+`make install`
+`make install test`
 
-git clone blabla
+### Create the database
 
-composer install
-make install
-make install test
+`chmod 777 data`
+`sqlite3 data/db.sqlite`
+`chmod 666 data/db.sqlite`
+`sqlite3 data/db.sqlite < sql/ddl/all_sqlite.sql`
 
-(evt chmod 777 cache/*
-skapa databasen)
+Now create a user and post the first forum question!
