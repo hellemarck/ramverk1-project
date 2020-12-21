@@ -12,7 +12,6 @@ use Mh\Forum\Reply;
 use Mh\Forum\Comment;
 use Anax\TextFilter\TextFilter;
 
-
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
 // use Anax\Route\Exception\InternalErrorException;
@@ -191,7 +190,7 @@ class UserController implements ContainerInjectableInterface
             "questions" => $question->findAllWhere("question.userid = ?", $id),
             "replies" => $reply->findAllWhere("reply.userid = ?", $id),
             "comments" => $comments,
-            "filter" => New TextFilter()
+            "filter" => new TextFilter()
         ];
 
         $page->add("user/profile", $data);

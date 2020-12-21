@@ -36,7 +36,8 @@ class Tag extends ActiveRecordModel
     // }
 
     // used in the HomeController to get the most popular tags
-    public function countTags() {
+    public function countTags()
+    {
         $this->checkDb();
         return $this->db->connect()
                         ->select("*, count(Tag2Question.tagid) as sum")

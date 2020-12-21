@@ -25,7 +25,7 @@ class Tag2Question extends ActiveRecordModel
     public $questionid;
 
     // find tags connected to the question
-    public function JoinTags($value)
+    public function joinTags($value)
     {
         $this->checkDb();
         $params = is_array($value) ? $value : [$value];

@@ -80,9 +80,9 @@ class UserLoginForm extends FormModel
         $res = $user->verifyPassword($username, $password);
 
         if (!$res) {
-           $this->form->rememberValues();
-           $this->form->addOutput("Fel användarnamn eller lösenord.");
-           return false;
+            $this->form->rememberValues();
+            $this->form->addOutput("Fel användarnamn eller lösenord.");
+            return false;
         }
 
         $this->di->get("session")->set("user", $user->userid);

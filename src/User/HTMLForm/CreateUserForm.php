@@ -69,7 +69,7 @@ class CreateUserForm extends FormModel
         $passwordAgain = $this->form->value("password-again");
 
         // Check password matches
-        if ($password !== $passwordAgain ) {
+        if ($password !== $passwordAgain) {
             $this->form->rememberValues();
             $this->form->addOutput("Lösenorden matchar inte, försök igen.");
             return false;

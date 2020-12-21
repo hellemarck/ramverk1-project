@@ -29,7 +29,7 @@ $urlToCreate = url("forum/create");
 
 <?php if (!$q2u) : ?>
     <p>Inga trådar finns ännu.</p>
-<?php
+    <?php
     return;
 endif;
 
@@ -45,11 +45,11 @@ endif;
     <p><?= $filter->parse($item->text, ["markdown"])->text ?></p>
 
 <p>TAGGAR:
-<?php foreach ($q2t as $tag) {
-    if ($tag->questionid == $item->questionid) {
-        ?><a href="<?= url("tags/tag/{$tag->tagid}"); ?>"><?= $tag->tag ?></a> <?php
-    }
-}?>
+    <?php foreach ($q2t as $tag) {
+        if ($tag->questionid == $item->questionid) {
+            ?><a href="<?= url("tags/tag/{$tag->tagid}"); ?>"><?= $tag->tag ?></a> <?php
+        }
+    }?>
 </p>
     <a href="<?= url("forum/question/{$item->questionid}"); ?>">Se inlägg, svara och kommentera</a>
 </div>

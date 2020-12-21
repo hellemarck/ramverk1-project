@@ -1,8 +1,7 @@
 <?php
 
 namespace Anax\View;
-// $commentFormQuest["id"] = 0;
-// var_dump($replies);
+
 $urlToUser = url("user/profile");
 
 ?>
@@ -16,7 +15,7 @@ $urlToUser = url("user/profile");
 <p><?= $filter->parse($question->text, ["markdown"])->text ?></p>
 
 <p>Taggar:
-    <?php foreach($tags as $tag) : ?>
+    <?php foreach ($tags as $tag) : ?>
         <a href=""><?= $tag->tag ?></a>
     <?php endforeach; ?>
 </div>
@@ -51,7 +50,6 @@ foreach ($replies as $reply) :
                     <?= $filter->parse($comment->text, ["markdown"])->text ?></p>
 
                     </div><?php
-
             }
         }?>
         </div>

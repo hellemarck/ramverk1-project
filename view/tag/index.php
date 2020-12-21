@@ -10,7 +10,7 @@ $urlToTag = url("tag");
     <h1>Taggar</h1>
     <p>Tryck på en tagg för att se inlägg kopplade till den.</p>
 
-<?php foreach($tags as $tag) {
+<?php foreach ($tags as $tag) {
     ?><li><a href="<?= url("tags/tag/{$tag->tagid}"); ?>"><?= ucfirst($tag->tag) ?></a></li><?php
 }  ?>
 </article>

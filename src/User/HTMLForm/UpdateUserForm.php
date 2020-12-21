@@ -129,9 +129,9 @@ class UpdateUserForm extends FormModel
         $res = $user->verifyPassword($username, $pwOld);
 
         if (!$res) {
-           $this->form->rememberValues();
-           $this->form->addOutput("Fel användarnamn eller lösenord.");
-           return false;
+            $this->form->rememberValues();
+            $this->form->addOutput("Fel användarnamn eller lösenord.");
+            return false;
         }
 
         // set new properties

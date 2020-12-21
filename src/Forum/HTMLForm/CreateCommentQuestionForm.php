@@ -77,7 +77,7 @@ class CreateCommentQuestionForm extends FormModel
         // if ($this->replyid) {
         //     $comment->replyid = $replyid;
         // } else {
-        $comment->questionid = $questionid;
+        $comment->questionid = $this->questionid;
         // }
 
         $comment->save();

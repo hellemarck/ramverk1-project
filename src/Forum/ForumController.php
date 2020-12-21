@@ -154,7 +154,7 @@ class ForumController implements ContainerInjectableInterface
         $replies = $reply->findAllWhereJoin("reply.questionid = ?", $id);
 
         foreach ($replies as $reply) {
-            $rComment = New Comment();
+            $rComment = new Comment();
             $id = $reply->replyid;
             $rComment->setDb($this->di->get("dbqb"));
             $reply->comments = $rComment->findAllWhereJoin("Comment.replyid = ?", $id);

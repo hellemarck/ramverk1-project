@@ -7,7 +7,6 @@ use Anax\Commons\ContainerInjectableTrait;
 use Mh\User\User;
 use Mh\Forum\Tag;
 use Mh\Forum\Question;
-// use Anax\Models\CurrentIp;
 
 /**
  * Controllerclass for IP validation
