@@ -4,20 +4,26 @@
 
 
 # Project in the course Ramverk1, BTH 2020.
-Built in PHP with the framework Anax, and database SQLite.
+Built in PHP with the framework Anax and database SQLite.
 
 ### Download and install
 
 `git clone https://github.com/hellemarck/ramverk1-project.git`
+
 `composer install`
+
 `make install`
+
 `make install test`
 
 ### Create the database
 
 `chmod 777 data`
+
 `sqlite3 data/db.sqlite`
+
 `chmod 666 data/db.sqlite`
+
 `sqlite3 data/db.sqlite < sql/ddl/all_sqlite.sql`
 
-Now create a user and post the first forum question!
+Now create a user, update user settings with an email address to get a gravatar picture, and post the first forum question!
