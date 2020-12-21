@@ -2,8 +2,6 @@
 -- Creating tables.
 --
 
-
-
 --
 -- Table User
 --

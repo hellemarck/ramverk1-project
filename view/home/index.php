@@ -2,8 +2,6 @@
 
 namespace Anax\View;
 
-// var_dump($mostActiveQuestion);
-
 ?>
 
 

@@ -14,10 +14,6 @@ namespace Anax\View;
 
 // Create urls for navigation
 $urlToCreate = url("forum/create");
-// $urlToDelete = url("forum/delete");
-
-// var_dump($q2u[0]);
-// var_dump($q2t[0]);
 
 ?><h1>Alla foruminlägg</h1>
 
@@ -54,5 +50,3 @@ endif;
     <a href="<?= url("forum/question/{$item->questionid}"); ?>">Se inlägg, svara och kommentera</a>
 </div>
 <?php endforeach; ?>
-
-<!-- </table> -->
