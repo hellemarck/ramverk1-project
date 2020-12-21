@@ -58,18 +58,6 @@ class TagController implements ContainerInjectableInterface
             $res->question = $quest->find("questionid", $res->questionid);
         }
 
-        // foreach ($result as $res) {
-        //     var_dump($res->question->title);
-        // };
-
-        // foreach ($replies as $reply) {
-        //     $rComment = New Comment();
-        //     $id = $reply->replyid;
-        //     $rComment->setDb($this->di->get("dbqb"));
-        //     // var_dump($reply->replyid);
-        //     $reply->comments = $rComment->findAllWhereJoin("Comment.replyid = ?", $id);
-        // }
-
         $data = [
             "tag" => $tag->tag,
             "res" => $result

@@ -15,8 +15,6 @@ class Tag extends ActiveRecordModel
     protected $tableName = "Tag";
     protected $tableIdColumn = "tagid";
 
-
-
     /**
      * Columns in the table.
      *
@@ -25,18 +23,19 @@ class Tag extends ActiveRecordModel
     public $tagid;
     public $tag;
 
-    public function joinTagAndQuestions($value)
-    {
-        $params = is_array($value) ? $value : [$value];
-        $this->checkDb();
-        return $this->db->connect()
-                        ->select()
-                        ->from($this->tableName)
-                        ->where("Tag.tagid = ?")
-                        ->execute($params)
-                        ->fetchAllClass(get_class($this));
-    }
+    // public function joinTagAndQuestions($value)
+    // {
+    //     $params = is_array($value) ? $value : [$value];
+    //     $this->checkDb();
+    //     return $this->db->connect()
+    //                     ->select()
+    //                     ->from($this->tableName)
+    //                     ->where("Tag.tagid = ?")
+    //                     ->execute($params)
+    //                     ->fetchAllClass(get_class($this));
+    // }
 
+    // used in the HomeController to get the most popular tags
     public function countTags() {
         $this->checkDb();
         return $this->db->connect()

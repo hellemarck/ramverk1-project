@@ -2,7 +2,6 @@
 
 namespace Anax\View;
 
-// var_dump($replies);
 $urlToUser = url("user/profile");
 
 ?>
@@ -11,7 +10,6 @@ $urlToUser = url("user/profile");
 
 <h2><?= $reply[0]->username ?> sa (<?= $reply[0]->date ?>):</h2>
 <p><?= $filter->parse($reply[0]->text, ["markdown"])->text ?></p>
-<!-- <p><?= $reply[0]->text?></p> -->
 <br><br>
 <?= $commentFormReply ?>
 

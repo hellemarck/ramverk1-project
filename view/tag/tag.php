@@ -2,11 +2,6 @@
 
 namespace Anax\View;
 
-// $urlBack = url("tags");
-// var_dump($res);
-// var_dump($tag);
-
-// /htdocs/forum/question/8
 ?>
 
 <article class="article" style="text-align:center; min-height:300px;">

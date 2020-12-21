@@ -3,21 +3,14 @@
 namespace Anax\View;
 
 /**
- * View to create a new book.
+ * View to show user information
  */
-// Show all incoming variables/functions
-//var_dump(get_defined_functions());
-//echo showEnvironment(get_defined_vars());
 
 // Gather incoming variables and use default values if not set
 // $user1 = isset($user) ? $user : null;
 
 // Create urls for navigation
 $urlToView = url("forum");
-
-// var_dump($replies);
-
-// var_dump($comments);
 
 ?><h1>Användarprofil</h1>
 

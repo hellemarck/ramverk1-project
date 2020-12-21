@@ -24,14 +24,10 @@ class UserController implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
-
-
     /**
      * @var $data description
      */
     //private $data;
-
-
 
     // /**
     //  * The initialize method is optional and will always be called before the
@@ -44,8 +40,6 @@ class UserController implements ContainerInjectableInterface
     // {
     //     ;
     // }
-
-
 
     /**
      * Description.
@@ -96,8 +90,6 @@ class UserController implements ContainerInjectableInterface
         $page = $this->di->get("page");
         $form = new UserLoginForm($this->di);
         $form->check();
-
-        // var_dump($_SESSION);
 
         $page->add("anax/v2/article/default", [
             "content" => $form->getHTML(),
@@ -157,7 +149,6 @@ class UserController implements ContainerInjectableInterface
     // log out user
     public function logOutAction() : object
     {
-        // $this->di->get("request")->getPost("logOut");
         $this->di->get("session")->delete("user");
         $this->di->get("response")->redirect("user/login");
     }
@@ -173,12 +164,9 @@ class UserController implements ContainerInjectableInterface
 
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
-        // $quest =
-        // var_dump($question);
 
         $reply = new Reply();
         $reply->setDb($this->di->get("dbqb"));
-        // $reply->find("userid", $id);
 
         $comment = new Comment();
         $comment->setDb($this->di->get("dbqb"));

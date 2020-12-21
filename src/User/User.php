@@ -69,7 +69,6 @@ class User extends ActiveRecordModel
     {
         $this->checkDb();
         return $this->db->connect()
-        // , count(Question.userid) as sumQ, count(Reply.userid) as sumR, count(Comment.userid) as sumC
                         ->select("*, count(user.userid) as sum")
                         ->from($this->tableName)
                         ->join($join, $where)

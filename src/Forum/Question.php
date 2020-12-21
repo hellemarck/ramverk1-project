@@ -28,7 +28,7 @@ class Question extends ActiveRecordModel
     public $title;
     public $text;
 
-    // NEW MORE GENERAL JOINUSERANDQUESTION
+    // join user with their questions
     public function joinTwoTables($joinTable, $where, $orderBy = null)
     {
         $this->checkDb();
@@ -41,20 +41,7 @@ class Question extends ActiveRecordModel
                         ->fetchAllClass(get_class($this));
     }
 
-    // public function findJoin($value)
-    // {
-    //     $this->checkDb();
-    //     $params = is_array($value) ? $value : [$value];
-    //     return $this->db->connect()
-    //                     ->select()
-    //                     ->from($this->tableName)
-    //                     ->where("Question.questionid = ?", $params)
-    //                     ->join("User", "User.userid = Question.userid")
-    //                     ->execute()
-    //                     ->fetchAllClass(get_class($this));
-    // }
-    // joinTwoTables("User", "Question.userid = User.userid")
-
+    // join question with its tags
     public function joinTagAndQuestion()
     {
         $this->checkDb();
@@ -67,6 +54,7 @@ class Question extends ActiveRecordModel
                         ->fetchAllClass(get_class($this));
     }
 
+    // join every questions with its comments
     public function joinQuestionComments($id)
     {
         $this->checkDb();

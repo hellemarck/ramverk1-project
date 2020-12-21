@@ -30,16 +30,16 @@ class Comment extends ActiveRecordModel
     public $text;
 
     // function to get username w comment
-    public function joinCommentUser($id)
-    {
-        $this->checkDb();
-        return $this->db->connect()
-                        ->select()
-                        ->from("User")
-                        ->join("Comment", "User.userid = Comment.userid")
-                        ->execute()
-                        ->fetchAllClass(get_class($this));
-    }
+    // public function joinCommentUser($id)
+    // {
+    //     $this->checkDb();
+    //     return $this->db->connect()
+    //                     ->select()
+    //                     ->from("User")
+    //                     ->join("Comment", "User.userid = Comment.userid")
+    //                     ->execute()
+    //                     ->fetchAllClass(get_class($this));
+    // }
 
     public function findAllWhereJoin($where, $value)
     {

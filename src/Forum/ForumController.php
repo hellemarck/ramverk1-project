@@ -5,9 +5,6 @@ namespace Mh\Forum;
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 use Mh\Forum\HTMLForm\CreateForm;
-use Mh\Forum\HTMLForm\EditForm;
-use Mh\Forum\HTMLForm\DeleteForm;
-use Mh\Forum\HTMLForm\UpdateForm;
 use Mh\Forum\HTMLForm\CreateReplyForm;
 use Mh\Forum\HTMLForm\CreateCommentQuestionForm;
 use Mh\Forum\HTMLForm\CreateCommentReplyForm;
@@ -25,14 +22,10 @@ class ForumController implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
-
-
     /**
      * @var $data description
      */
     //private $data;
-
-
 
     // /**
     //  * The initialize method is optional and will always be called before the
@@ -45,8 +38,6 @@ class ForumController implements ContainerInjectableInterface
     // {
     //     public $userid = $_SESSION["user"] ?? null;
     // }
-
-
 
     /**
      * Show all items.
@@ -61,7 +52,6 @@ class ForumController implements ContainerInjectableInterface
         $filter = new TextFilter();
 
         $page->add("forum/crud/view-all", [
-            // "items" => $question->findAll(),
             "q2u" => $question->joinTwoTables("User", "Question.userid = User.userid", "Question.questionid DESC"),
             "q2t" => $question->joinTagAndQuestion(),
             "filter" => $filter
@@ -82,7 +72,7 @@ class ForumController implements ContainerInjectableInterface
     public function createAction() : object
     {
         $page = $this->di->get("page");
-        $user = $_SESSION["user"]; // ?? null;
+        $user = $_SESSION["user"];
         $question = new CreateForm($this->di, $user);
         $question->check();
 
@@ -102,20 +92,20 @@ class ForumController implements ContainerInjectableInterface
      *
      * @return object as a response object
      */
-    public function deleteAction() : object
-    {
-        $page = $this->di->get("page");
-        $question = new DeleteForm($this->di);
-        $question->check();
-
-        $page->add("forum/crud/delete", [
-            "form" => $question->getHTML(),
-        ]);
-
-        return $page->render([
-            "title" => "Radera inlägg",
-        ]);
-    }
+    // public function deleteAction() : object
+    // {
+    //     $page = $this->di->get("page");
+    //     $question = new DeleteForm($this->di);
+    //     $question->check();
+    //
+    //     $page->add("forum/crud/delete", [
+    //         "form" => $question->getHTML(),
+    //     ]);
+    //
+    //     return $page->render([
+    //         "title" => "Radera inlägg",
+    //     ]);
+    // }
 
 
 
@@ -126,20 +116,20 @@ class ForumController implements ContainerInjectableInterface
      *
      * @return object as a response object
      */
-    public function updateAction(int $id) : object
-    {
-        $page = $this->di->get("page");
-        $form = new UpdateForm($this->di, $id);
-        $form->check();
-
-        $page->add("forum/crud/update", [
-            "form" => $form->getHTML(),
-        ]);
-
-        return $page->render([
-            "title" => "Update an item",
-        ]);
-    }
+    // public function updateAction(int $id) : object
+    // {
+    //     $page = $this->di->get("page");
+    //     $form = new UpdateForm($this->di, $id);
+    //     $form->check();
+    //
+    //     $page->add("forum/crud/update", [
+    //         "form" => $form->getHTML(),
+    //     ]);
+    //
+    //     return $page->render([
+    //         "title" => "Update an item",
+    //     ]);
+    // }
 
     public function questionAction(int $id) : object
     {
@@ -167,10 +157,8 @@ class ForumController implements ContainerInjectableInterface
             $rComment = New Comment();
             $id = $reply->replyid;
             $rComment->setDb($this->di->get("dbqb"));
-            // var_dump($reply->replyid);
             $reply->comments = $rComment->findAllWhereJoin("Comment.replyid = ?", $id);
         }
-        // $replies->comments = "hello";
 
         $replyForm = new CreateReplyForm($this->di, $id);
         $replyForm->check();
@@ -178,8 +166,6 @@ class ForumController implements ContainerInjectableInterface
         $commentFormQuest = new CreateCommentQuestionForm($this->di, $id);
         $commentFormQuest->check();
 
-        // $commentFormReply = new CreateCommentReplyForm($this->di, $id);
-        // $commentFormReply->check();
 
         $data = [
             "question" => $res,
@@ -187,7 +173,6 @@ class ForumController implements ContainerInjectableInterface
             "replyForm" => $replyForm->getHTML(),
             "commentFormQuest" => $commentFormQuest->getHTML(),
             "user" => $user->find("userid", $question->userid),
-            // "commentFormReply" => $commentFormReply->getHTML(),
             "qComments" => $qcomments,
             "replies" => $replies,
             "filter" => new TextFilter()
@@ -206,7 +191,6 @@ class ForumController implements ContainerInjectableInterface
         $page = $this->di->get("page");
         $comment = new Comment();
         $comment->setDb($this->di->get("dbqb"));
-        $filter = new TextFilter();
         $reply = new Reply();
         $reply->setDb($this->di->get("dbqb"));
 
@@ -216,7 +200,7 @@ class ForumController implements ContainerInjectableInterface
         $page->add("forum/comment", [
             "commentFormReply" => $commentFormReply->getHTML(),
             "reply" => $reply->findAllWhereJoin("reply.replyid = ?", $id),
-            "filter" => $filter
+            "filter" => new TextFilter()
         ]);
 
         return $page->render([

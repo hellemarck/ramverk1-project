@@ -47,7 +47,7 @@ endif;
 <p>TAGGAR:
 <?php foreach ($q2t as $tag) {
     if ($tag->questionid == $item->questionid) {
-        ?><a href=""><?= $tag->tag ?></a> <?php
+        ?><a href="<?= url("tags/tag/{$tag->tagid}"); ?>"><?= $tag->tag ?></a> <?php
     }
 }?>
 </p>

@@ -15,8 +15,6 @@ class Reply extends ActiveRecordModel
     protected $tableName = "Reply";
     protected $tableIdColumn = "replyid";
 
-
-
     /**
      * Columns in the table.
      *
@@ -37,12 +35,12 @@ class Reply extends ActiveRecordModel
                         ->select()
                         ->from($this->tableName)
                         ->join("User", "User.userid = Reply.userid")
-                        // ->leftJoin("Comment", "Comment.replyid = Reply.replyid")
                         ->where($where)
                         ->execute($params)
                         ->fetchAllClass(get_class($this));
     }
 
+    // used in the UserController to get the questionid for comments
     public function findQuestionIdWhere($where, $value) : object
     {
         $this->checkDb();

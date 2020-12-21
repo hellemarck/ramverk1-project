@@ -15,8 +15,6 @@ class Tag2Question extends ActiveRecordModel
     protected $tableName = "Tag2Question";
     protected $tableIdColumn = "id";
 
-
-
     /**
      * Columns in the table.
      *
