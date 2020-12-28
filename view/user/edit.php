@@ -17,10 +17,15 @@ $urlToView = url("user");
 
 
 
-?><h1>Redigera användare</h1>
+?>
+<article class="article">
+<div class="questions">
+
+<h1>Redigera användare</h1>
 
 <?= $form ?>
 
-<p>
-    <a href="<?= $urlToView ?>">Gå tillbaka</a>
-</p>
+    <p class="link-create"><a href="<?= $urlToView ?>">Gå tillbaka</a></p>
+
+</div>
+</article>

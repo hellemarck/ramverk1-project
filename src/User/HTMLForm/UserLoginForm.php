@@ -23,7 +23,7 @@ class UserLoginForm extends FormModel
         $this->form->create(
             [
                 "id" => __CLASS__,
-                "legend" => "Logga in"
+                // "legend" => "Logga in"
             ],
             [
                 "user" => [
@@ -41,11 +41,15 @@ class UserLoginForm extends FormModel
                     "value" => "Logga in",
                     "callback" => [$this, "callbackSubmit"]
                 ],
+
+                "register" => [
+                    "type" => "submit",
+                    "value" => "Skapa användare",
+                    "callback" => [$this, "callbackRegister"]
+                ],
             ]
         );
     }
-
-
 
     /**
      * Callback for submit-button which should return true if it could
@@ -59,22 +63,6 @@ class UserLoginForm extends FormModel
         $username      = $this->form->value("user");
         $password      = $this->form->value("password");
 
-        // // Try to login
-        // $db = $this->di->get("dbqb");
-        // $db->connect();
-        // $user = $db->select("userid, pw")
-        //            ->from("User")
-        //            ->where("username = ?")
-        //            ->execute([$username])
-        //            ->fetch();
-        //
-        // // $user is null if user is not found
-        // if (!$user || !password_verify($password, $user->pw)) {
-        //    $this->form->rememberValues();
-        //    $this->form->addOutput("Fel användarnamn eller lösenord.");
-        //    return false;
-        // }
-
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
         $res = $user->verifyPassword($username, $password);
@@ -86,12 +74,17 @@ class UserLoginForm extends FormModel
         }
 
         $this->di->get("session")->set("user", $user->userid);
-        $this->form->addOutput("Du har loggats in.");
+        // $this->form->addOutput("Du har loggats in.");
         return true;
     }
 
     public function callbackSuccess()
     {
         $this->di->get("response")->redirect("user")->send();
+    }
+
+    public function callbackRegister()
+    {
+        $this->di->get("response")->redirect("user/create");
     }
 }

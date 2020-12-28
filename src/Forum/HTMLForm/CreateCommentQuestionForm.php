@@ -36,13 +36,13 @@ class CreateCommentQuestionForm extends FormModel
             [
 
                 "text" => [
-                    "label"       => "Kommentera",
+                    "label"       => "Kommentera frågan",
                     "type"        => "text",
                 ],
 
                 "submit" => [
                     "type" => "submit",
-                    "value" => "Skicka kommentar",
+                    "value" => "Skicka",
                     "callback" => [$this, "callbackSubmit"]
                 ],
             ]

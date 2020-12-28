@@ -47,7 +47,7 @@ class CreateCommentReplyForm extends FormModel
 
                 "submit" => [
                     "type" => "submit",
-                    "value" => "Kommentera svar",
+                    "value" => "Skicka",
                     "callback" => [$this, "callbackSubmit"]
                 ],
             ]

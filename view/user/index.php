@@ -7,14 +7,19 @@ $logOut = "<a href=" . url("user/logout") ."> Logga ut</a>";
 
 ?>
 
-<article class="article" style="border:1px #ccc solid; padding: 20px; margin:auto; text-align:left; min-height:300px; width:600px;">
+<article class="article">
+    <div class="questions">
+
     <h1>Min sida</h1>
 
-    <img src="<?php echo $user->gravatar($user->email) ?>" style="float:right;">
+    <img src="<?php echo $user->gravatar($user->email) ?>" style="float:right;margin:10px 10px 0 0;border:2px solid #70665d">
+
     <p><b>Användar-ID:</b> <?= $user->userid ?><br>
     <b>Användarnamn:</b> <?= $user->username ?><br>
     <b>E-post:</b> <?= $user->email ?? "Saknas" ?></p>
+<br>
+<p class="link-create"> <?= $edit ?> </p>
+<p class="link-create"> <?= $logOut ?> </p>
 
-<p> <?= $edit ?> </p>
-<p> <?= $logOut ?> </p>
+</div>
 </article>

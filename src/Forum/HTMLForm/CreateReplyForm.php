@@ -39,13 +39,13 @@ class CreateReplyForm extends FormModel
                 ],
 
                 "text" => [
-                    "label"       => "Svara",
+                    "label"       => "Svara på frågan",
                     "type"        => "text",
                 ],
 
                 "submit" => [
                     "type" => "submit",
-                    "value" => "Skicka svar",
+                    "value" => "Skicka",
                     "callback" => [$this, "callbackSubmit"]
                 ],
             ]

@@ -23,7 +23,7 @@ class CreateUserForm extends FormModel
         $this->form->create(
             [
                 "id" => __CLASS__,
-                "legend" => "Skapa användare",
+                // "legend" => "Skapa användare",
                 "escape-values" => false
             ],
             [

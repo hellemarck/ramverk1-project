@@ -53,4 +53,10 @@ class Reply extends ActiveRecordModel
                  ->fetchInto($this);
         return $this;
     }
+
+    // generate a gravatar based on email
+    public function gravatar($email)
+    {
+        return "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "&s=" . 40;
+    }
 }

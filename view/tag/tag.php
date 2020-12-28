@@ -6,7 +6,7 @@ namespace Anax\View;
 
 <article class="article" style="text-align:center; min-height:300px;">
     <h1>Inlägg med taggen "<?= $tag ?>" </h1>
-
+<br>
 <?php
 
 if ($res) {
@@ -19,6 +19,6 @@ if ($res) {
 
 ?>
 
-<br><br><a href="<?= url("tags") ?>">Tillbaka</a>
+<br><p class="link-create"><a href="<?= url("tags") ?>">Tillbaka</a></p>
 
 </article>

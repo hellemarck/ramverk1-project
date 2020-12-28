@@ -27,3 +27,7 @@ Built in PHP with the framework Anax and database SQLite.
 `sqlite3 data/db.sqlite < sql/ddl/all_sqlite.sql`
 
 Now create a user, update user settings with an email address to get a gravatar picture, and post the first forum question!
+
+### Validation/tests
+
+`make test`

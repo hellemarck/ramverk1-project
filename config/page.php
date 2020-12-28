@@ -12,7 +12,7 @@ return [
         "region" => "layout",
         "template" => "anax/v2/layout/dbwebb_se",
         "data" => [
-            "baseTitle" => " | Mikrogrönt",
+            "baseTitle" => " | MFK",
             "bodyClass" => null,
             "favicon" => "favicon.ico",
             "htmlClass" => null,
@@ -42,7 +42,7 @@ return [
             "template" => "anax/v2/header/site_logo_text",
             "data" => [
                 "homeLink"      => "",
-                "siteLogoText"  => "Mikrogrönt",
+                "siteLogoText"  => "Men först, kaffe",
                 // "siteLogoTextIcon" => "image/theme/leaf_40x40.png",
                 // "siteLogoTextIconAlt" => "Löv-bild",
             ],

@@ -90,8 +90,9 @@ class UserController implements ContainerInjectableInterface
         $form = new UserLoginForm($this->di);
         $form->check();
 
-        $page->add("anax/v2/article/default", [
-            "content" => $form->getHTML(),
+        // $page->add("anax/v2/article/default", [
+        $page->add("user/login", [
+            "form" => $form->getHTML(),
         ]);
 
         return $page->render([
@@ -114,8 +115,9 @@ class UserController implements ContainerInjectableInterface
         $form = new CreateUserForm($this->di);
         $form->check();
 
-        $page->add("anax/v2/article/default", [
-            "content" => $form->getHTML(),
+        // $page->add("anax/v2/article/default", [
+        $page->add("user/create", [
+            "form" => $form->getHTML(),
         ]);
 
         return $page->render([
