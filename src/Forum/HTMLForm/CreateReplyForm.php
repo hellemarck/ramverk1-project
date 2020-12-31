@@ -40,7 +40,7 @@ class CreateReplyForm extends FormModel
 
                 "text" => [
                     "label"       => "Svara på frågan",
-                    "type"        => "text",
+                    "type"        => "textarea",
                 ],
 
                 "submit" => [

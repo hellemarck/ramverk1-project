@@ -17,10 +17,13 @@ $urlToViewItems = url("forum");
 
 
 
-?><h1>Nytt inlägg</h1>
+?>
+<article class="article">
+<h1>Nytt inlägg</h1>
 
 <?= $form ?>
 
-<p>
+<p class="link-create">
     <a href="<?= $urlToViewItems ?>">Visa alla</a>
 </p>
+</article>

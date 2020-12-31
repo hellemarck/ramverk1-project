@@ -42,7 +42,7 @@ class CreateCommentReplyForm extends FormModel
 
                 "text" => [
                     "label"       => "",
-                    "type"        => "text",
+                    "type"        => "textarea",
                 ],
 
                 "submit" => [

@@ -3,12 +3,13 @@
 namespace Anax\View;
 
 $edit = " <a href=" . url("user/edit/" . $user->userid) .">Redigera användare</a>";
-$logOut = "<a href=" . url("user/logout") ."> Logga ut</a>";
+$logOut = "<a href=" . url("user/logout") ." style='color:#d65163;'>Logga ut</a>";
+$profile = "<a href=" . url("user/profile/" . $user->userid) .">Se mina inlägg, svar och kommentarer</a>"
 
 ?>
 
 <article class="article">
-    <div class="questions">
+    <div class="content-holder">
 
     <h1>Min sida</h1>
 
@@ -19,6 +20,7 @@ $logOut = "<a href=" . url("user/logout") ."> Logga ut</a>";
     <b>E-post:</b> <?= $user->email ?? "Saknas" ?></p>
 <br>
 <p class="link-create"> <?= $edit ?> </p>
+<p class="link-create"> <?= $profile ?> </p>
 <p class="link-create"> <?= $logOut ?> </p>
 
 </div>

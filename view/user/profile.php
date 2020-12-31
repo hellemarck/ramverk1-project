@@ -30,16 +30,25 @@ $urlToView = url("forum");
 
 <h3>Svar</h3>
 
-<?php foreach ($replies as $reply) : ?>
+<?php
+if ($replies) {
+    foreach ($replies as $reply) : ?>
 <a href="<?= url("forum/question/{$reply->questionid}"); ?>"><li><?= $reply->text ?></li></a>
-<?php endforeach; ?>
+<?php endforeach;
+} else {
+    ?><p>Inga svar.</p><?php
+}?>
 
 <h3>Kommentarer</h3>
 
-<?php foreach ($comments as $comment) : ?>
+<?php if ($comments) {
+    foreach ($comments as $comment) : ?>
 <a href="<?= url("forum/question/{$comment->questionid}"); ?>"><li><?= $comment->text ?></li></a>
-<?php endforeach; ?>
-
+<?php endforeach;
+} else {
+    ?><p>Inga kommentarer.</p><?php
+}?>
+<br>
 <p class="link-create">
     <a href="<?= $urlToView ?>">Tillbaks till forum</a>
 </p>

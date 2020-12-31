@@ -174,13 +174,14 @@ Major+Mono+Display */
     font-size: 1.1em;
     text-align: center;
     color: #5b8db3;
-    text-decoration: none;
+    /* text-decoration: none; */
 }
 
 div.questions {
     margin-bottom: 30px;
     margin:50px 0;
     padding: 20px;
+    background-color: #fffbf5;
     -webkit-box-shadow: 0px 0px 6px 0px rgba(112, 102, 93, 1);
     -moz-box-shadow: 0px 0px 6px 0px rgba(112, 102, 93, 1);
     box-shadow: 0px 0px 6px 0px rgba(112, 102, 93, 1);
@@ -349,8 +350,47 @@ fieldset {
     margin-right: 10px;
 }
 
+/**
+ * responsive
+ */
+@media (max-width: 930px) {
+    .welcome img {
+        height: 200px;
+        float: none;
+        margin-right: 0;
+        /* background-color: yellow; */
+    } .welcome .heading {
+        font-size:1.5em;
+        margin-top: 0;
+        text-align: center;
+    } .welcome p {
+        font-size: 1.2em;
+        text-align: center;
+    } .welcome {
+        border-right:none;
+    }
+}
+
+@media (max-width: 700px) {
+    .toplists, .users-toplists {
+        flex-direction: column;
+        flex:100%;
+    }
+}
+
+@media (max-width: 700px) {
+    .article {
+        width:90%;
+    }
+}
+
 .article a, a:visited {
     color: #666;
+}
+
+div.content-holder {
+    background-color: #fffbf5;
+    padding: 20px;
 }
 
 .rm-navbar-max .rm-button {
@@ -389,19 +429,9 @@ a.rm-button .rm-button-face-1 {
     margin-top: 40px;
 }
 
-/* .my-navbar li a {
-    font-family: "Source Code Pro";
-    text-transform: uppercase;
-    background-color: black;
-    color: #ccc;
-    font-size: 18px;
-    margin: 0;
-} */
 
 .my-navbar li a:hover {
     font-style: italic;
-    /* background-color: black; */
-    /* color: #ccc; */
 }
 
 .figure .right img {

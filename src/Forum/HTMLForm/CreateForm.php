@@ -29,16 +29,11 @@ class CreateForm extends FormModel
             ],
             [
                 "userid" => [
-                    "type" => "text", // "hidden"
+                    "type" => "hidden",
                     "validation" => ["not_empty"],
                     "readonly" => true,
                     "value" => $user,
                 ],
-
-                // "date" => [
-                //     "type" => "text",
-                //     "validation" => ["not_empty"],
-                // ],
 
                 "title" => [
                     "label" => "Rubrik",

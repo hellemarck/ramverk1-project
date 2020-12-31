@@ -37,7 +37,7 @@ class CreateCommentQuestionForm extends FormModel
 
                 "text" => [
                     "label"       => "Kommentera frågan",
-                    "type"        => "text",
+                    "type"        => "textarea",
                 ],
 
                 "submit" => [
