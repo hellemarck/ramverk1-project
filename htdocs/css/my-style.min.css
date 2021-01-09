@@ -191,6 +191,18 @@ div.questions {
     color: #444;
     font-size: 1.1em;
 }
+
+div.holder {
+    margin-bottom: 30px;
+    margin:50px 0;
+    padding: 20px;
+    background-color: #fffbf5;
+} div.holder h3 {
+    font-size: 2em;
+} div.holder p {
+    color: #444;
+    font-size: 1.1em;
+}
 /*
 .questions p.question {
     color: pink;

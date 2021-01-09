@@ -25,7 +25,6 @@ class CreateForm extends FormModel
             [
                 "questionid" => __CLASS__,
                 "escape-values" => false
-                // "legend" => "Nytt inlägg",
             ],
             [
                 "userid" => [
@@ -49,12 +48,11 @@ class CreateForm extends FormModel
 
                 "tag" => [
                     "label" => "Taggar",
-                    "placeholder" => "Exempel: groddar skott",
+                    "placeholder" => "Exempel: bönor kanna",
                     "type" => "text",
                 ],
 
                 "submit" => [
-                    // "label" => "Skapa inlägg",
                     "type" => "submit",
                     "value" => "Skapa inlägg",
                     "callback" => [$this, "callbackSubmit"]
@@ -89,7 +87,8 @@ class CreateForm extends FormModel
             // Save tag if new
             $tag = new Tag();
             $tag->setDb($this->di->get("dbqb"));
-            if ($tag->find("tag", $item) == null) {
+            $tag->find("tag", $item);
+            if (!$tag->tagid) {
                 $tag->tag = $item;
                 $tag->save();
             }
@@ -113,10 +112,10 @@ class CreateForm extends FormModel
      * happen when the submit callback method returns true. This method
      * can/should be implemented by the subclass for a different behaviour.
      */
-    // public function callbackSuccess()
-    // {
-    //     $this->di->get("response")->redirect("forum")->send();
-    // }
+    public function callbackSuccess()
+    {
+        $this->di->get("response")->redirect("forum")->send();
+    }
 
 
 

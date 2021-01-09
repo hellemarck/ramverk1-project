@@ -10,8 +10,7 @@ CREATE TABLE User (
     "userid" INTEGER PRIMARY KEY NOT NULL,
     "username" TEXT UNIQUE NOT NULL,
     "pw" TEXT NOT NULL,
-    "email" TEXT,
-    -- "activity" INTEGER DEFAULT 0
+    "email" TEXT
 );
 
 --

@@ -46,7 +46,7 @@ class HomeController implements ContainerInjectableInterface
             "mostActiveReply" => $mostRActive,
             "mostActiveComment" => $mostCActive
         ]);
-        // $page->add("home/index");
+
         return $page->render([
             "title" => $title,
         ]);

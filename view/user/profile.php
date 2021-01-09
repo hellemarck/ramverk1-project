@@ -24,9 +24,14 @@ $urlToView = url("forum");
 
 <h3>Inlägg</h3>
 
-<?php foreach ($questions as $question) : ?>
+<?php
+if ($questions) {
+    foreach ($questions as $question) : ?>
 <a href="<?= url("forum/question/{$question->questionid}"); ?>"><li><?= $question->title ?></li></a>
-<?php endforeach; ?>
+    <?php endforeach;
+} else {
+    ?><p>Inga inlägg.</p><?php
+}?>
 
 <h3>Svar</h3>
 
@@ -34,7 +39,7 @@ $urlToView = url("forum");
 if ($replies) {
     foreach ($replies as $reply) : ?>
 <a href="<?= url("forum/question/{$reply->questionid}"); ?>"><li><?= $reply->text ?></li></a>
-<?php endforeach;
+    <?php endforeach;
 } else {
     ?><p>Inga svar.</p><?php
 }?>
@@ -44,13 +49,13 @@ if ($replies) {
 <?php if ($comments) {
     foreach ($comments as $comment) : ?>
 <a href="<?= url("forum/question/{$comment->questionid}"); ?>"><li><?= $comment->text ?></li></a>
-<?php endforeach;
+    <?php endforeach;
 } else {
     ?><p>Inga kommentarer.</p><?php
 }?>
 <br>
 <p class="link-create">
-    <a href="<?= $urlToView ?>">Tillbaks till forum</a>
+    <a href="<?= $urlToView ?>">Till forum</a>
 </p>
 </div>
 </article>

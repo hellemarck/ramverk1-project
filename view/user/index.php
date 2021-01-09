@@ -9,7 +9,7 @@ $profile = "<a href=" . url("user/profile/" . $user->userid) .">Se mina inlägg,
 ?>
 
 <article class="article">
-    <div class="content-holder">
+    <div class="content-holder" style="padding:20px 100px">
 
     <h1>Min sida</h1>
 

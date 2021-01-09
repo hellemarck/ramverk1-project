@@ -12,10 +12,6 @@ use Mh\Forum\Reply;
 use Mh\Forum\Comment;
 use Anax\TextFilter\TextFilter;
 
-// use Anax\Route\Exception\ForbiddenException;
-// use Anax\Route\Exception\NotFoundException;
-// use Anax\Route\Exception\InternalErrorException;
-
 /**
  * A sample controller to show how a controller class can be implemented.
  */
@@ -90,7 +86,6 @@ class UserController implements ContainerInjectableInterface
         $form = new UserLoginForm($this->di);
         $form->check();
 
-        // $page->add("anax/v2/article/default", [
         $page->add("user/login", [
             "form" => $form->getHTML(),
         ]);
@@ -115,7 +110,6 @@ class UserController implements ContainerInjectableInterface
         $form = new CreateUserForm($this->di);
         $form->check();
 
-        // $page->add("anax/v2/article/default", [
         $page->add("user/create", [
             "form" => $form->getHTML(),
         ]);

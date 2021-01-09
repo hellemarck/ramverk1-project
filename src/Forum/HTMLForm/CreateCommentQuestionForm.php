@@ -27,7 +27,6 @@ class CreateCommentQuestionForm extends FormModel
     {
         parent::__construct($di);
         $this->questionid = $id;
-        // $this->replyid = $replyid;
         $this->form->create(
             [
                 "id" => __CLASS__,
@@ -60,7 +59,6 @@ class CreateCommentQuestionForm extends FormModel
     public function callbackSubmit()
     {
         // Get values from the submitted form
-        // $id            = $this->form->value("id");
         $text          = $this->form->value("text");
         $userid        = $_SESSION["user"] ?? null;
 
@@ -73,15 +71,9 @@ class CreateCommentQuestionForm extends FormModel
         $comment->userid = $userid;
         $comment->text = $text;
         $comment->date = date("Y-m-d H:i:s");
-
-        // if ($this->replyid) {
-        //     $comment->replyid = $replyid;
-        // } else {
         $comment->questionid = $this->questionid;
-        // }
 
         $comment->save();
-
         return true;
     }
 

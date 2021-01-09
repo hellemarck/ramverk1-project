@@ -23,7 +23,6 @@ class CreateUserForm extends FormModel
         $this->form->create(
             [
                 "id" => __CLASS__,
-                // "legend" => "Skapa användare",
                 "escape-values" => false
             ],
             [
@@ -75,21 +74,12 @@ class CreateUserForm extends FormModel
             return false;
         }
 
-        // Save to database
-        // $db = $this->di->get("dbqb");
-        // $password = password_hash($password, PASSWORD_DEFAULT);
-        // $db->connect()
-        //    ->insert("User", ["username", "pw", "activity"])
-        //    ->execute([$username, $password, 0]);
-
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
         $user->username = $username;
         $user->setPassword($password);
-        $user->activity = 0;
         $user->save();
 
-        // $this->form->addOutput("Användare skapad.");
         return true;
     }
 

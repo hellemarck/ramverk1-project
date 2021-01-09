@@ -11,26 +11,22 @@ use Mh\Forum\Tag;
 // use Anax\Models\CurrentIp;
 
 /**
- * Controllerclass for IP validation
+ * Controllerclass for Post Tags
  */
 class TagController implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
     /**
-     * rendering index page for user to type ip address
-     * with current ip as default value
+     * listing all tags
      */
     public function indexAction()
     {
-
-        // var_dump($this->di);
         $page = $this->di->get("page");
         $title = "Taggar";
 
         $tag = new Tag();
         $tag->setDb($this->di->get("dbqb"));
-
 
         $page->add("tag/index", [
             "tags" => $tag->findAll(),

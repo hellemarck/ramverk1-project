@@ -23,7 +23,6 @@ class UserLoginForm extends FormModel
         $this->form->create(
             [
                 "id" => __CLASS__,
-                // "legend" => "Logga in"
             ],
             [
                 "user" => [
@@ -74,7 +73,6 @@ class UserLoginForm extends FormModel
         }
 
         $this->di->get("session")->set("user", $user->userid);
-        // $this->form->addOutput("Du har loggats in.");
         return true;
     }
 

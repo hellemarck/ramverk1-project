@@ -62,10 +62,8 @@ class ForumController implements ContainerInjectableInterface
         ]);
     }
 
-
-
     /**
-     * Handler with form to create a new item.
+     * Handler with form to create a new post.
      *
      * @return object as a response object
      */
@@ -86,55 +84,11 @@ class ForumController implements ContainerInjectableInterface
     }
 
 
-
-    /**
-     * Handler with form to delete an item.
-     *
-     * @return object as a response object
-     */
-    // public function deleteAction() : object
-    // {
-    //     $page = $this->di->get("page");
-    //     $question = new DeleteForm($this->di);
-    //     $question->check();
-    //
-    //     $page->add("forum/crud/delete", [
-    //         "form" => $question->getHTML(),
-    //     ]);
-    //
-    //     return $page->render([
-    //         "title" => "Radera inlägg",
-    //     ]);
-    // }
-
-
-
-    /**
-     * Handler with form to update an item.
-     *
-     * @param int $id the id to update.
-     *
-     * @return object as a response object
-     */
-    // public function updateAction(int $id) : object
-    // {
-    //     $page = $this->di->get("page");
-    //     $form = new UpdateForm($this->di, $id);
-    //     $form->check();
-    //
-    //     $page->add("forum/crud/update", [
-    //         "form" => $form->getHTML(),
-    //     ]);
-    //
-    //     return $page->render([
-    //         "title" => "Update an item",
-    //     ]);
-    // }
-
     public function questionAction(int $id) : object
     {
         $page = $this->di->get("page");
         $this->di->get("session")->set("question", $id);
+
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
         $res = $question->find("questionid", $id);
@@ -155,9 +109,9 @@ class ForumController implements ContainerInjectableInterface
 
         foreach ($replies as $reply) {
             $rComment = new Comment();
-            $id = $reply->replyid;
+            $rId = $reply->replyid;
             $rComment->setDb($this->di->get("dbqb"));
-            $reply->comments = $rComment->findAllWhereJoin("Comment.replyid = ?", $id);
+            $reply->comments = $rComment->findAllWhereJoin("Comment.replyid = ?", $rId);
         }
 
         $replyForm = new CreateReplyForm($this->di, $id);
@@ -165,7 +119,6 @@ class ForumController implements ContainerInjectableInterface
 
         $commentFormQuest = new CreateCommentQuestionForm($this->di, $id);
         $commentFormQuest->check();
-
 
         $data = [
             "question" => $res,

@@ -19,7 +19,7 @@ $urlToView = url("user");
 
 ?>
 <article class="article">
-<div class="questions">
+<div class="content-holder holder">
 
 <h1>Redigera användare</h1>
 

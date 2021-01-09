@@ -15,8 +15,6 @@ class Comment extends ActiveRecordModel
     protected $tableName = "Comment";
     protected $tableIdColumn = "commentid";
 
-
-
     /**
      * Columns in the table.
      *
@@ -29,18 +27,7 @@ class Comment extends ActiveRecordModel
     public $date;
     public $text;
 
-    // function to get username w comment
-    // public function joinCommentUser($id)
-    // {
-    //     $this->checkDb();
-    //     return $this->db->connect()
-    //                     ->select()
-    //                     ->from("User")
-    //                     ->join("Comment", "User.userid = Comment.userid")
-    //                     ->execute()
-    //                     ->fetchAllClass(get_class($this));
-    // }
-
+    // join comment with user
     public function findAllWhereJoin($where, $value)
     {
         $params = is_array($value) ? $value : [$value];

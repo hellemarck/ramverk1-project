@@ -15,8 +15,6 @@ class Question extends ActiveRecordModel
     protected $tableName = "Question";
     protected $tableIdColumn = "questionid";
 
-
-
     /**
      * Columns in the table.
      *

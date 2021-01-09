@@ -22,13 +22,11 @@ class User extends ActiveRecordModel
     * @var string  $username not null.
     * @var string  $pw not null.
     * @var string  $email.
-    * @var integer $activity.
     */
     public $userid;
     public $username;
     public $pw;
     public $email;
-    public $activity;
 
     /**
      * Set the password.

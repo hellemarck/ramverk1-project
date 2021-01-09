@@ -28,7 +28,6 @@ class CreateReplyForm extends FormModel
         $this->form->create(
             [
                 "id" => __CLASS__,
-                // "legend" => "Skapa användare",
                 "escape-values" => false
             ],
             [

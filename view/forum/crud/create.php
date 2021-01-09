@@ -19,6 +19,8 @@ $urlToViewItems = url("forum");
 
 ?>
 <article class="article">
+    <div class="content-holder holder">
+
 <h1>Nytt inlägg</h1>
 
 <?= $form ?>
@@ -26,4 +28,5 @@ $urlToViewItems = url("forum");
 <p class="link-create">
     <a href="<?= $urlToViewItems ?>">Visa alla</a>
 </p>
+</div>
 </article>

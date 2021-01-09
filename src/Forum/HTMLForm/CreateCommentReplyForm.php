@@ -34,12 +34,6 @@ class CreateCommentReplyForm extends FormModel
                 "escape-values" => false
             ],
             [
-                // "id" => [
-                //     "label"       => "Id",
-                //     "value"       => $this->replyid,
-                //     "type"        => "text",
-                // ],
-
                 "text" => [
                     "label"       => "",
                     "type"        => "textarea",
@@ -65,7 +59,6 @@ class CreateCommentReplyForm extends FormModel
     public function callbackSubmit()
     {
         // Get values from the submitted form
-        // $id            = $this->form->value("id");
         $text          = $this->form->value("text");
         $userid        = $_SESSION["user"] ?? null;
 
@@ -79,8 +72,8 @@ class CreateCommentReplyForm extends FormModel
         $comment->text = $text;
         $comment->date = date("Y-m-d H:i:s");
         $comment->replyid = $this->replyid;
-        $comment->save();
 
+        $comment->save();
         return true;
     }
 
